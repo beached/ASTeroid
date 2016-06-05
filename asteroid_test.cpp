@@ -23,6 +23,7 @@
 #include "asteroid.h"
 
 namespace daw {
-
+	namespace asteroid {
+	}	// namespace asteroid
 }	// namespace daw
 
