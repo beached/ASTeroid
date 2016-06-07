@@ -36,13 +36,14 @@ namespace daw {
 		public:
 			ast_node( ast_node_type node_type );
 			ast_node_type const & node_type( ) const;
-			
+			virtual ~ast_node( );
+
 			ast_node( ) = delete;
 			ast_node( ast_node const & ) = default;
 			ast_node( ast_node && ) = default;
 			ast_node & operator=( ast_node const & ) = default;
 			ast_node & operator=( ast_node && ) = default;
-			virtual ~ast_node( );
+			
 		};	// struct ast_node
 
 		struct ast_node_scope: public ast_node {
@@ -58,7 +59,11 @@ namespace daw {
 		};	// ast_node_scope
 
 		struct ast_node_type_identifier: public ast_node {
-			ast_node_type_identifier( );
+			std::string name;
+			uintmax_t width;
+			std::vector<std::shared_ptr<ast_node_type_identifier>> components;
+			ast_node_type_identifier( std::string type_name );
+
 
 			ast_node_type_identifier( ast_node_type_identifier const & ) = default;
 			ast_node_type_identifier( ast_node_type_identifier && ) = default;
@@ -76,8 +81,9 @@ namespace daw {
 		};	// struct assignable
 
 		struct ast_node_cpu_register: public ast_node, public addressable, public has_value {
-			ast_node_cpu_register( );
 			std::string name;
+			ast_node_cpu_register( std::string register_name );
+
 			ast_node_cpu_register( ast_node_cpu_register const & ) = default;
 			ast_node_cpu_register( ast_node_cpu_register && ) = default;
 			ast_node_cpu_register & operator=( ast_node_cpu_register const & ) = default;

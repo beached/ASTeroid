@@ -24,6 +24,32 @@
 
 namespace daw {
 	namespace asteroid {
+		ast_node::ast_node( ast_node_type node_type ): 
+			m_node_type{ node_type } { }
+
+		ast_node::ast_node_type const& ast_node::node_type() const {
+			return m_node_type;
+		}
+
+		ast_node::~ast_node( ) { }
+
+		ast_node_scope::ast_node_scope( ): 
+			ast_node { ast_node::ast_node_type::scope }, 
+			children { } { }
+
+		ast_node_type_identifier::ast_node_type_identifier( std::string type_name ): 
+			ast_node { ast_node::ast_node_type::type_identifier }, 
+			name { std::move( type_name ) }, 
+			width { 0 }, 
+			components { } { }
+
+		addressable::~addressable( ) { }
+
+		has_value::~has_value( ) { }
+
+		ast_node_cpu_register::ast_node_cpu_register( std::string register_name ):
+			ast_node { ast_node::ast_node_type::cpu_register }, 
+			name { std::move( register_name ) } { }
 	}	// namespace asteroid
 }	// namespace daw
 
