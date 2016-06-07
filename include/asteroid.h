@@ -93,8 +93,9 @@ namespace daw {
 		};	// ast_node_cpu_register
 
 		struct ast_node_memory_address: public ast_node, public addressable, public has_value {
-			ast_node_memory_address( );
 			uintmax_t location;
+			ast_node_memory_address( uintmax_t memory_location );
+
 			ast_node_memory_address( ast_node_memory_address const & ) = default;
 			ast_node_memory_address( ast_node_memory_address && ) = default;
 			ast_node_memory_address & operator=( ast_node_memory_address const & ) = default;
@@ -107,9 +108,11 @@ namespace daw {
 		};	// struct assignable
 
 		struct ast_node_variable_declaration: public ast_node, public assignable, public has_value {
-			ast_node_variable_declaration( ast_node_type_identifier type_identifier );
-		
 			std::shared_ptr<addressable> location;
+			std::string name;
+			std::shared_ptr<ast_node_type_identifier> variable_type;
+
+			ast_node_variable_declaration( std::shared_ptr<ast_node_type_identifier> variable_type_id, std::string variable_name );				
 
 			ast_node_variable_declaration( ast_node_variable_declaration const & ) = default;
 			ast_node_variable_declaration( ast_node_variable_declaration && ) = default;
@@ -119,9 +122,10 @@ namespace daw {
 		};	// ast_node_variable_declaration
 
 		struct ast_node_assignement: public ast_node {
-			ast_node_assignement( );
 			std::weak_ptr<assignable> lhs;
 			std::weak_ptr<has_value> rhs;
+			ast_node_assignement( );
+
 			ast_node_assignement( ast_node_assignement const & ) = default;
 			ast_node_assignement( ast_node_assignement && ) = default;
 			ast_node_assignement & operator=( ast_node_assignement const & ) = default;

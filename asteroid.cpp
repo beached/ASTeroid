@@ -50,6 +50,18 @@ namespace daw {
 		ast_node_cpu_register::ast_node_cpu_register( std::string register_name ):
 			ast_node { ast_node::ast_node_type::cpu_register }, 
 			name { std::move( register_name ) } { }
+
+		ast_node_memory_address::ast_node_memory_address(uintmax_t memory_location):
+			ast_node { ast_node::ast_node_type::memory_address },
+			location { memory_location } { }
+
+		assignable::~assignable( ) { }
+
+		ast_node_variable_declaration::ast_node_variable_declaration( std::shared_ptr<ast_node_type_identifier> variable_type_id, std::string variable_name ):
+			ast_node { ast_node::ast_node_type::variable_declaration },
+			location{ },
+			name{ std::move( variable_name ) },
+			variable_type{ variable_type_id }  { }
 	}	// namespace asteroid
 }	// namespace daw
 
