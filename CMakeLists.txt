@@ -39,7 +39,7 @@ set( HEADER_FILES
 )
 
 set( SOURCE_FILES
-	asteroid_test.cpp
+	asteroid.cpp
 )
 
 add_executable( asteroid ${SOURCE_FILES} ${HEADER_FILES} )
