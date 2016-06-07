@@ -62,6 +62,49 @@ namespace daw {
 			location{ },
 			name{ std::move( variable_name ) },
 			variable_type{ variable_type_id }  { }
+
+		ast_node_assignement::ast_node_assignement( std::shared_ptr<assignable> left, std::shared_ptr<has_value> right ):
+			ast_node { ast_node::ast_node_type::assignment },
+			lhs{ std::move( left ) },
+			rhs{ std::move( right ) } { }
+
+		ast_node_loop::ast_node_loop( std::shared_ptr<ast_node_scope> loop_body ):
+			ast_node { ast_node::ast_node_type::loop },
+			scope{ std::move( loop_body ) } { }
+
+		ast_node_label::ast_node_label(std::string label_name):
+			ast_node { ast_node::ast_node_type::label },
+			identifier{ std::move( label_name ) } { }
+
+		ast_node_jump::ast_node_jump( std::shared_ptr<ast_node_label> destination ):
+			ast_node { ast_node::ast_node_type::jump },
+			label{ std::move( destination ) } { }
+
+		ast_node_operator_add::ast_node_operator_add( std::shared_ptr<assignable> Result, std::shared_ptr<has_value> Left, std::shared_ptr<has_value> Right ):
+			ast_node { ast_node::ast_node_type::operator_add },
+			result { std::move( Result ) },
+			lhs { std::move( Left ) },
+			rhs { std::move( Right ) } { }
+
+		ast_node_operator_sub::ast_node_operator_sub( std::shared_ptr<assignable> Result, std::shared_ptr<has_value> Left, std::shared_ptr<has_value> Right ):
+			ast_node { ast_node::ast_node_type::operator_sub },
+			result { std::move( Result ) },
+			lhs { std::move( Left ) },
+			rhs { std::move( Right ) } { }
+
+		ast_node_operator_mul::ast_node_operator_mul( std::shared_ptr<assignable> Result, std::shared_ptr<has_value> Left, std::shared_ptr<has_value> Right ):
+			ast_node { ast_node::ast_node_type::operator_mul },
+			result { std::move( Result ) },
+			lhs { std::move( Left ) },
+			rhs { std::move( Right ) } { }
+
+		ast_node_operator_div::ast_node_operator_div( std::shared_ptr<assignable> Result, std::shared_ptr<has_value> Left, std::shared_ptr<has_value> Right ):
+			ast_node { ast_node::ast_node_type::operator_div },
+			result { std::move( Result ) },
+			lhs { std::move( Left ) },
+			rhs { std::move( Right ) } { }
+
+
 	}	// namespace asteroid
 }	// namespace daw
 
