@@ -31,7 +31,7 @@ namespace daw {
 		struct ast_node: public std::enable_shared_from_this<ast_node> {
 			enum class ast_node_type {
 				scope, type_identifier, memory_address, cpu_register, variable_declaration, assignment, loop, label, jump,
-				operator_add, operator_sub, operator_mul, operator_div
+				operator_add, operator_sub, operator_mul, operator_div, function_definition, literal
 			};
 
 		protected:
@@ -229,6 +229,25 @@ namespace daw {
 			ast_node_operator_div & operator=( ast_node_operator_div const & ) = default;
 			ast_node_operator_div & operator=( ast_node_operator_div && ) = default;
 		};	// ast_node_operator_div
+
+		struct callable {
+			virtual ~callable( );
+		};	// struct callable
+
+		struct ast_node_function_definition: public ast_node, public has_value, public callable {
+			std::string name;
+			std::vector<std::shared_ptr<has_value>> arguments;
+			std::shared_ptr<ast_node_scope> scope;
+
+			ast_node_function_definition( std::string function_name );
+			~ast_node_function_definition( );
+
+			ast_node_function_definition( ast_node_function_definition const & ) = default;
+			ast_node_function_definition( ast_node_function_definition && ) = default;
+			ast_node_function_definition & operator=( ast_node_function_definition const & ) = default;
+			ast_node_function_definition & operator=( ast_node_function_definition && ) = default;
+		};	// ast_node_function_definition
+
 	}	// namespace asteroid
 }	// namespace daw
 

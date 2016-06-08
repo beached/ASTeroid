@@ -129,5 +129,16 @@ namespace daw {
 			rhs { std::move( Right ) } { }
 
 		ast_node_operator_div::~ast_node_operator_div( ) { }
+
+
+		callable::~callable( ) { }
+
+		ast_node_function_definition::ast_node_function_definition( std::string function_name ):
+			ast_node { ast_node::ast_node_type::function_definition },
+			name { std::move( function_name ) },
+			arguments { },
+			scope { } { }
+
+		ast_node_function_definition::~ast_node_function_definition( ) { }
 	}	// namespace asteroid
 }	// namespace daw
