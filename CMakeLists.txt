@@ -46,3 +46,8 @@ add_library( asteroid ${SOURCE_FILES} ${HEADER_FILES} )
 add_dependencies( asteroid header_libraries_prj )
 
 target_link_libraries( asteroid ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${COMPILER_SPECIFIC_LIBS} )
+
+
+install( TARGETS asteroid DESTINATION lib )
+install( DIRECTORY ${HEADER_FOLDER}/ DESTINATION include/daw/asteroid )
+
