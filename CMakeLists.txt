@@ -29,9 +29,7 @@ ExternalProject_Add(
 	GIT_REPOSITORY "https://github.com/beached/header_libraries.git"
 	SOURCE_DIR "${CMAKE_BINARY_DIR}/3rdparty/header_libraries"
 	GIT_TAG "master"
-	PATCH_COMMAND ""
 	INSTALL_DIR "${CMAKE_BINARY_DIR}/install"
-	TEST_COMMAND ""
 	CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/install
  )
 
