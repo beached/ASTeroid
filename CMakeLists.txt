@@ -37,6 +37,9 @@ include_directories( SYSTEM "${CMAKE_BINARY_DIR}/install/include" )
 include_directories( SYSTEM ${Boost_INCLUDE_DIRS} )
 
 set( HEADER_FOLDER "include" )
+set( SOURCE_FOLDER "src" )
+set( TEST_FOLDER "tests" )
+
 include_directories( ${HEADER_FOLDER} )
 
 set( HEADER_FILES
@@ -44,7 +47,7 @@ set( HEADER_FILES
 )
 
 set( SOURCE_FILES
-	asteroid.cpp
+	${SOURCE_FOLDER}/asteroid.cpp
 )
 
 add_library( asteroid ${SOURCE_FILES} ${HEADER_FILES} )
